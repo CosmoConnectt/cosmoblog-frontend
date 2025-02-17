@@ -1,0 +1,53 @@
+/* @tailwind directives should stay at the top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the body */
+body {
+  background-color: #e6e6ff;  /* Light background */
+  width: 100vw;  /* Full width of the viewport */
+  overflow-x: hidden;  /* Prevent horizontal scrolling */
+  font-family: "Montserrat", sans-serif;  /* Custom font */
+}
+
+/* Custom animation for buttons */
+.animatedButton {
+  animation-duration: 10000ms;  /* Button animation duration */
+}
+
+/* Styling for ReactQuill components */
+
+/* Remove borders for ReactQuill container */
+.ql-container {
+  border: none !important;
+}
+
+/* Remove borders for ReactQuill toolbar */
+.ql-toolbar {
+  border: none !important;
+}
+
+/* Remove borders for ReactQuill editor */
+.ql-editor {
+  border: none !important;
+}
+
+/* Optional: Styling for ReactQuill images and videos */
+
+/* Styling for images within ReactQuill */
+.custom-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+}
+
+/* Styling for videos within ReactQuill */
+.custom-video {
+  width: 100%;
+  height: auto;
+  max-height: 500px;  /* Ensure video doesn't overflow */
+  display: block;
+  margin: 10px 0;
+}
