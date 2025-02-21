@@ -1,11 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    sourcemap: false, // Disable sourcemap generation
+    port: 3000,
   },
-})
-
-
+  build: {
+    outDir: 'dist',
+  },
+  base: '/', // Ensure this is set to '/' so React Router works correctly
+});
