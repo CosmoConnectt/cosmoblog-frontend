@@ -6,8 +6,7 @@ import { SignedIn, SignedOut, useAuth, UserButton } from "@clerk/clerk-react";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-
-  const {getToken} = useAuth();
+  const { getToken } = useAuth();
 
   useEffect(() => {
     getToken().then((token) => {
@@ -15,14 +14,12 @@ const Navbar = () => {
     });
   }, [getToken]);
 
-
-
   return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       {/* Logo Section */}
-      <Link to="/" className="flex items-center gap-4 text-2xl font-bold">
+      <Link to="https://cosmoconnect-content.netlify.app/" className="flex items-center gap-4 text-2xl font-bold">
         <Image src="CosmoLogo1.jpeg" alt="Logo" w={32} h={32} />
-        <span>CosmoConnect</span>
+        <span><a href="https://cosmoconnect-content.netlify.app/">CosmoConnect</a></span>
       </Link>
 
       {/* Mobile Menu */}
@@ -43,8 +40,7 @@ const Navbar = () => {
           }`}
         >
           <Link to="/">Home</Link>
-          <Link to="/trending">Trending</Link>
-          <Link to="/most-popular">Most Popular</Link>
+          <Link to="/store">Store</Link>
           <Link to="../About">About</Link>
           <SignedOut>
             <Link to="/login">
@@ -59,8 +55,7 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium">
         <Link to="/">Home</Link>
-        <Link to="/trending">Trending</Link>
-        <Link to="/most-popular">Most Popular</Link>
+        <Link to="/store">Store</Link>
         <Link to="./About">About</Link>
         <SignedOut>
           <Link to="/login">

@@ -5,10 +5,16 @@
 
 /* Custom styles for the body */
 body {
-  background-color: #e6e6ff;  /* Light background */
+  background-image: url('/star1.jpg');  /* Starry background image */
+  background-size: cover;  /* Cover the entire viewport */
+  background-repeat: no-repeat;  /* Do not repeat the background image */
+  background-attachment: fixed;  /* Fix the background image */
+  background-position: center;  /* Center the background image */
+  color: #ffffff;  /* Silver text color */
   width: 100vw;  /* Full width of the viewport */
   overflow-x: hidden;  /* Prevent horizontal scrolling */
   font-family: "Montserrat", sans-serif;  /* Custom font */
+  opacity: 0.9;  /* Set background image transparency to 50% */
 }
 
 /* Custom animation for buttons */

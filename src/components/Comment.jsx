@@ -43,7 +43,7 @@ const Comment = ({ comment, postId }) => {
             w="40"
           />
         )}
-        <span className="font-medium">{comment.user.username}</span>
+        <span className="font-medium text-black">{comment.user.username}</span>
         <span className="text-sm text-gray-500">
           {format(comment.createdAt)}
         </span>
@@ -59,7 +59,7 @@ const Comment = ({ comment, postId }) => {
           )}
       </div>
       <div className="mt-4">
-        <p>{comment.desc}</p>
+        <p className="text-black">{comment.desc}</p>
       </div>
     </div>
   );

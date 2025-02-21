@@ -84,15 +84,18 @@ const Write = () => {
   
   return (
     <div className="h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] flex flex-col gap-6">
-      <h1 className="text-cl font-light">Create a New Post</h1>
+      <h1 className="text-2xl md:text-4xl font-bold text-center">Create a New Post</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 mb-6">
-        <Upload type="image" setProgress={setProgress} setData={setCover}>
-          <button className="w-max p-2 shadow-md rounded-xl text-sm text-gray-500 bg-white">
-            Add a cover image
-          </button>
-        </Upload>
+        <div className="flex items-center gap-4">
+          <Upload type="image" setProgress={setProgress} setData={setCover}>
+            <button className="w-max p-2 shadow-md rounded-xl text-sm text-gray-500 bg-white">
+              Add a cover image
+            </button>
+          </Upload>
+          <span>{"Progress: " + progress}</span>
+        </div>
         <input
-          className="text-4xl font-semibold bg-transparent outline-none"
+          className="text-4xl font-semibold bg-transparent outline-none text-center"
           type="text"
           placeholder="My Awesome Story"
           name="title"
@@ -115,7 +118,7 @@ const Write = () => {
           </select>
         </div>
         <textarea
-          className="p-4 rounded-xl bg-white shadow-md"
+          className="p-2 rounded-xl bg-white shadow-md"
           name="desc"
           placeholder="A Short Description"
         />
@@ -130,7 +133,7 @@ const Write = () => {
           </div>
           <ReactQuill
             theme="snow"
-            className="flex-1 rounded-xl bg-white shadow-md h-[400px] overflow-auto"  // Adjusted to prevent overflow
+            className="flex-1 rounded-xl bg-white shadow-md h-[1000px] w-full overflow-auto"  // Adjusted to make it a big rectangle
             value={value}
             onChange={setValue}
             readOnly={0 < progress && progress < 100}
@@ -142,7 +145,6 @@ const Write = () => {
         >
           {mutation.isPending ? "Loading..." : "Send"}
         </button>
-        {"Progress:" + progress}
         {/* {mutation.isError && <span>{mutation.error.message}</span>} */}
       </form>
     </div>

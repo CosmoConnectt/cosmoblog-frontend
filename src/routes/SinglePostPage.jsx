@@ -1,3 +1,4 @@
+// src/pages/SinglePostPage.jsx
 import { Link, useParams } from "react-router-dom";
 import Image from "../components/Image";
 import PostMenuActions from "../components/PostMenuActions";
@@ -7,6 +8,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "timeago.js";
 import DOMPurify from "dompurify";
+import MainCategories from "../components/MainCategories";
 
 const fetchPost = async (slug) => {
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
@@ -16,24 +18,31 @@ const fetchPost = async (slug) => {
 const SinglePostPage = () => {
   const { slug } = useParams();
 
-  const { isPending, error, data } = useQuery({
+  const { isLoading, isError, error, data } = useQuery({
     queryKey: ["post", slug],
     queryFn: () => fetchPost(slug),
   });
 
-  if (isPending) return "loading...";
-  if (error) return "Something went wrong!" + error.message;
-  if (!data) return "Post not found!";
+  if (isLoading) return "Loading...";
+  if (isError) return <div>Error: {error.message}</div>;
+  if (!data) return <div>Post not found!</div>;
 
   return (
     <div className="flex flex-col gap-8">
-      {/* detail */}
-      <div className="flex gap-8">
-        <div className="lg:w-3/5 flex flex-col gap-8">
-          <h1 className="text-xl md:text-3xl xl:text-4xl 2xl:text-5xl font-semibold">
+      {/* Main Categories */}
+      <MainCategories />
+
+      {/* INTRODUCTION */}
+      <div className="flex items-center justify-between">
+        {/* titles */}
+        <div className="w-1/2">
+          <h1 className="text-blue-800 text-2xl md:text-5xl lg:text-4xl font-bold">
             {data.title}
           </h1>
-          <div className="flex items-center gap-2 text-gray-400 text-sm">
+        </div>
+        {/* description */}
+        <div className="w-1/2 text-right">
+          <div className="flex items-center gap-2 text-gray-400 text-sm justify-end">
             <span>Written by</span>
             <Link className="text-blue-800">{data.user.username}</Link>
             <span>on</span>
@@ -42,72 +51,54 @@ const SinglePostPage = () => {
           </div>
           <p className="text-gray-500 font-medium">{data.desc}</p>
         </div>
-        {data.img && (
-          <div className="hidden lg:block w-2/5">
-            <Image src={data.img} w="600" className="rounded-2xl" 
-            alt=""/>
-          </div>
-        )}
       </div>
-      {/* content */}
-      <div className="flex flex-col md:flex-row gap-12 justify-between">
-        {/* text */}
-        <div
-  className="lg:text-lg flex flex-col gap-6 text-justify"
-  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }}/>
 
-          {/* <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias neque
-            fugiat itaque quas esse sunt cupiditate possimus cumque asperiores,
-            dolorem, dolores eligendi amet perferendis illum repellat nam quam
-            facilis veritatis. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Sint ipsa fuga nihil numquam, quam dicta quas
-            exercitationem aliquam maxime quaerat, enim autem culpa sequi at!
-            Earum facere in ducimus culpa. Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Libero fuga modi amet error aliquid
-            eos nobis vero soluta facilis, voluptatem, voluptates quod suscipit
-            obcaecati voluptate quaerat laborum, voluptatum dicta ipsum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias neque
-            fugiat itaque quas esse sunt cupiditate possimus cumque asperiores,
-            dolorem, dolores eligendi amet perferendis illum repellat nam quam
-            facilis veritatis. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Sint ipsa fuga nihil numquam, quam dicta quas
-            exercitationem aliquam maxime quaerat, enim autem culpa sequi at!
-            Earum facere in ducimus culpa. Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Libero fuga modi amet error aliquid
-            eos nobis vero soluta facilis, voluptatem, voluptates quod suscipit
-            obcaecati voluptate quaerat laborum, voluptatum dicta ipsum.
-          </p>
+      {/* Static Button */}
+      <Link to="/write" className="fixed bottom-8 right-6">
+        <button className="relative w-20 h-20 bg-blue-800 rounded-full flex items-center justify-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="50"
+            height="50"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+      </Link>
 
-      */}
-        {/* menu */}
-        <div className="px-4 h-max sticky top-8">
+      <div className="flex gap-8">
+        {/* Left Section */}
+        <div className="w-4/5 flex flex-col gap-8">
+          {data.img && (
+            <div className="mt-4 w-full">
+              <Image src={data.img} w="950" className="rounded-2xl" alt=""/>
+            </div>
+          )}
+          <div
+            className="lg:text-lg flex flex-col gap-6 text-justify"
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }}
+          />
+        </div>
+
+        {/* Right Section */}
+        <div className="w-1/5 px-4 h-max sticky top-8">
           <h1 className="mb-4 text-sm font-medium">Author</h1>
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-8">
-              {/* {data.user.img && (
-                <Image
-                  src={data.user.img}
-                  className="w-12 h-12 rounded-full object-cover"
-                  w="48"
-                  h="48"
-                />
-              )} */}
-              <Link className="text-black -800 font-semibold">
+            <Link className="text-white -800 font-semibold">
               {data.user.username}
-              </Link>
-            </div>
+            </Link>
             <p className="text-sm text-gray-500">
               {data.user.desc}
             </p>
-            {/* Socials */}
             <div className="flex gap-2 items-center">
               <Link>
                 <Image src="f1.svg" />
               </Link>
-
               <Link>
                 <Image src="i1.svg" />
               </Link>
@@ -116,27 +107,18 @@ const SinglePostPage = () => {
           <PostMenuActions post={data} />
           <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
           <div className="flex flex-col gap-2 text-sm">
-            <Link className="underline">General</Link>
-            <Link className="underline" to="/">
-              Space News & Updates
-            </Link>
-            <Link className="underline" to="/">
-              Astronomy Basics
-            </Link>
-            <Link className="underline" to="/">
-              Stargazing Tips
-            </Link>
-            <Link className="underline" to="/">
-              Cosmic Events
-            </Link>
-            <Link className="underline" to="/">
-              Space Photography
-            </Link>
+            <Link className="underline" to="/posts?cat=General">General</Link>
+            <Link className="underline" to="/posts?cat=Space-News">Space News & Updates</Link>
+            <Link className="underline" to="/posts?cat=Astronomy-Basics">Astronomy Basics</Link>
+            <Link className="underline" to="/posts?cat=Stargazing-Tips">Stargazing Tips</Link>
+            <Link className="underline" to="/posts?cat=Cosmic-Events">Cosmic Events</Link>
+            <Link className="underline" to="/posts?cat=Space-Photography">Space Photography</Link>
           </div>
           <h1 className="mt-8 mb-4 text-sm font-medium">Search</h1>
           <Search />
         </div>
       </div>
+
       <Comments postId={data._id} />
     </div>
   );
