@@ -17,6 +17,7 @@ const App = () => {
           <Route path="/posts/:slug" element={<SinglePostPage />} /> {/* Define the SinglePostPage route */}
           <Route path="/posts" element={<PostListPage />} />
           <Route path="/write" element={<Write />} /> {/* Define the Write route */}
+          <Route path="*" element={<div>404 Not Found</div>} /> {/* Catch-all route for undefined paths */}
         </Routes>
 
         {/* BREADCRUMB */}
