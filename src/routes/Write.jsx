@@ -15,8 +15,6 @@ const Write = () => {
   const [img, setImg] = useState("");
   const [video, setVideo] = useState("");
   const [progress, setProgress] = useState(0);
-  const [isFeatured, setIsFeatured] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
 
   // Add image to the content area with custom styles
   useEffect(() => {
@@ -120,7 +118,7 @@ const Write = () => {
           </select>
         </div>
         <textarea
-          className="p-2 rounded-xl bg-white shadow-md text-black"
+          className="p-2 rounded-xl bg-white shadow-md  text-black"
           name="desc"
           placeholder="A Short Description"
         />
@@ -140,22 +138,6 @@ const Write = () => {
             onChange={setValue}
             readOnly={0 < progress && progress < 100}
           />
-        </div>
-        <div className="flex gap-4">
-          <button
-            type="button"
-            onClick={() => setIsFeatured(!isFeatured)}
-            className={`p-2 rounded-xl ${isFeatured ? "bg-blue-800 text-white" : "bg-white text-blue-800"} border border-blue-800`}
-          >
-            Feature
-          </button>
-          <button
-            type="button"
-            onClick={() => setIsSaved(!isSaved)}
-            className={`p-2 rounded-xl ${isSaved ? "bg-blue-800 text-white" : "bg-white text-blue-800"} border border-blue-800`}
-          >
-            Save
-          </button>
         </div>
         <button
           disabled={mutation.isPending || (0 < progress && progress < 100)}
