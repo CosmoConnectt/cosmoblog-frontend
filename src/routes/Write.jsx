@@ -133,7 +133,7 @@ const Write = () => {
           </div>
           <ReactQuill
             theme="snow"
-            className="flex-1 rounded-xl bg-white shadow-md h-[1000px] w-full overflow-auto"  // Adjusted to make it a big rectangle
+            className="flex-1 rounded-xl bg-white shadow-md h-[1000px] w-full overflow-auto text-black"  // Adjusted to make it a big rectangle
             value={value}
             onChange={setValue}
             readOnly={0 < progress && progress < 100}
