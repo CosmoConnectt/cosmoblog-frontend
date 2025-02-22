@@ -107,7 +107,7 @@ const Write = () => {
           <select
             name="category"
             id=""
-            className="p-2 rounded-xl bg-white shadow-md"
+            className="p-2 rounded-xl bg-white shadow-md text-black"
           >
             <option value="General">General</option>
             <option value="Space-news">Space News & Updates</option>
