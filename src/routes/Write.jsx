@@ -118,7 +118,7 @@ const Write = () => {
           </select>
         </div>
         <textarea
-          className="p-2 rounded-xl bg-white shadow-md"
+          className="p-2 rounded-xl bg-white shadow-md  text-black"
           name="desc"
           placeholder="A Short Description"
         />
