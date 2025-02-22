@@ -122,10 +122,10 @@ const FeaturedPosts = () => {
             </div>
             {/* title */}
             <Link
-              to={posts[3].slug}
+              to={posts[4].slug}
               className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
             >
-              {posts[3].title}
+              {posts[4].title}
             </Link>
           </div>
         </div>}
