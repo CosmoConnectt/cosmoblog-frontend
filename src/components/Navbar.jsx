@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Image from "./Image";
 import { Link } from "react-router-dom";
 import { SignedIn, SignedOut, useAuth, UserButton } from "@clerk/clerk-react";
 
@@ -18,7 +17,7 @@ const Navbar = () => {
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       {/* Logo Section */}
       <Link to="https://cosmoconnect-content.netlify.app/" className="flex items-center gap-4 text-2xl font-bold">
-        <Image src="cclogo.jpeg" alt="Logo" w={32} h={32} />
+        <img src="/logo.svg" alt="Logo" width={32} height={32} />
         <span><a href="https://cosmoconnect-content.netlify.app/">CosmoConnect</a></span>
       </Link>
 
