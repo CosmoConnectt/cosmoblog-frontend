@@ -4,6 +4,7 @@ import Homepage from "./routes/Homepage";
 import SinglePostPage from "./routes/SinglePostPage";
 import PostListPage from "./routes/PostListPage";
 import Write from "./routes/Write"; // Import the Write component
+import ErrorBoundary from "./components/ErrorBoundary"; // Import the ErrorBoundary component
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
           <Route path="/posts/:slug" element={<SinglePostPage />} /> {/* Define the SinglePostPage route */}
           <Route path="/posts" element={<PostListPage />} />
           <Route path="/write" element={<Write />} /> {/* Define the Write route */}
-          <Route path="*" element={<div>404 Not Found</div>} /> {/* Catch-all route for undefined paths */}
+          <Route path="*" element={<ErrorBoundary />} /> {/* Catch-all route for undefined paths */}
         </Routes>
 
         {/* BREADCRUMB */}
