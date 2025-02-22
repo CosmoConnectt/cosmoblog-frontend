@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Search from "./Search";
 
 const SideMenu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isFeatured, setIsFeatured] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const handleFilterChange = (e) => {
     if (searchParams.get("sort") !== e.target.value) {
@@ -16,11 +19,10 @@ const SideMenu = () => {
     if (searchParams.get("cat") !== category) {
       setSearchParams({
         ...Object.fromEntries(searchParams.entries()),
-        cat:category,
+        cat: category,
       });
     }
   };
-
 
   return (
     <div className="px-4 h-max sticky top-8">
@@ -71,12 +73,28 @@ const SideMenu = () => {
       </div>
       <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
       <div className="flex flex-col gap-2 text-sm">
-        <span className="underline cursor-pointer" onClick={()=>handleCategoryChange("General")}>General</span>
-        <span className="underline cursor-pointer" onClick={()=>handleCategoryChange("Space-news")}>Space News & Updates</span>
-        <span className="underline cursor-pointer" onClick={()=>handleCategoryChange("Astronomy-Basics")}>Astronomy Basics</span>
-        <span className="underline cursor-pointer" onClick={()=>handleCategoryChange("Stargazing-Tips")}>Stargazing Tips</span>
-        <span className="underline cursor-pointer" onClick={()=>handleCategoryChange("Cosmic-Events")}>Cosmic Events</span>
-        <span className="underline cursor-pointer" onClick={()=>handleCategoryChange("Space-Photography")}>Space Photography</span>
+        <span className="underline cursor-pointer" onClick={() => handleCategoryChange("General")}>General</span>
+        <span className="underline cursor-pointer" onClick={() => handleCategoryChange("Space-news")}>Space News & Updates</span>
+        <span className="underline cursor-pointer" onClick={() => handleCategoryChange("Astronomy-Basics")}>Astronomy Basics</span>
+        <span className="underline cursor-pointer" onClick={() => handleCategoryChange("Stargazing-Tips")}>Stargazing Tips</span>
+        <span className="underline cursor-pointer" onClick={() => handleCategoryChange("Cosmic-Events")}>Cosmic Events</span>
+        <span className="underline cursor-pointer" onClick={() => handleCategoryChange("Space-Photography")}>Space Photography</span>
+      </div>
+      <div className="flex gap-4 mt-4">
+        <button
+          type="button"
+          onClick={() => setIsFeatured(!isFeatured)}
+          className={`p-2 rounded-xl ${isFeatured ? "bg-blue-800 text-white" : "bg-white text-blue-800"} border border-blue-800`}
+        >
+          Feature
+        </button>
+        <button
+          type="button"
+          onClick={() => setIsSaved(!isSaved)}
+          className={`p-2 rounded-xl ${isSaved ? "bg-blue-800 text-white" : "bg-white text-blue-800"} border border-blue-800`}
+        >
+          Save
+        </button>
       </div>
     </div>
   );
