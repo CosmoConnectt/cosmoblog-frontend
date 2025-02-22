@@ -55,7 +55,7 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium">
         <Link to="/">Home</Link>
-        <Link to="https://cosmoconnect-store.onrender.com">Store</Link>
+        <Link to="https://cosmoconnect-store.onrender.com/">Store</Link>
         <SignedOut>
           <Link to="/login">
             <button className="py-2 px-4 rounded-3xl bg-blue-800 text-white">
